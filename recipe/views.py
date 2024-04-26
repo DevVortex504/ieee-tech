@@ -194,13 +194,17 @@ def favourite(request):
     meals = []
     base_url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
     id = []
-    favourites = Favourite.objects.filter(user = request.user).all()
-    for favourite in favourites:
-        id = int(favourite.meal_id)
-        response = requests.get(base_url+str(id))
-        o = response.json()
-        meal = o["meals"][0]
-        meals.append(meal)
+    try:
+        favourites = Favourite.objects.filter(user = request.user).all()
+    except:
+        favourites = None
+    if favourites:
+        for favourite in favourites:
+            id = int(favourite.meal_id)
+            response = requests.get(base_url+str(id))
+            o = response.json()
+            meal = o["meals"][0]
+            meals.append(meal)
     try:
         n = len(meals)
     except:
