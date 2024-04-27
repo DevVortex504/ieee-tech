@@ -9,7 +9,8 @@
             
             paragraphs.forEach(paragraph => {
                 const p = document.createElement('p');
-                p.textContent = paragraph;
+                //p.textContent = paragraph;
+                p.innerHTML = paragraph;
                 console.log(paragraph)
                 recipeContainer.appendChild(p);
             });
