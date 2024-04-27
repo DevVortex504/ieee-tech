@@ -33,23 +33,23 @@
                 </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'favourites' %}">Favourites</a>
+                    <a class="nav-link" href="{% url 'favourites' %}"><i style="padding-right: 10px; color: rgb(255, 47, 116);" class="fa-regular fa-heart"></i>Favourites</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        <a class="nav-link" href="{% url 'logout' %}"><i style="padding-right: 10px;" class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        <a class="nav-link" href="{% url 'login' %}"><i style="padding-right: 10px;" class="fa fa-sign-in" aria-hidden="true"></i>Log In</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Register</a>
                     </li>
                 {% endif %}        
                 <li class="nav-search">
-                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
                     <form method="GET" action="{% url 'search' %}">
                         {% csrf_token %}
                         <input class="search" type="text" name="q" minlength="0" maxlength="100" required placeholder="Search" value="{{query}}">
@@ -65,23 +65,23 @@
                 </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'favourites' %}">Favourites</a>
+                    <a class="nav-link" href="{% url 'favourites' %}"><i style="padding-right: 10px; color: rgb(255, 47, 116);" class="fa-regular fa-heart"></i>Favourites</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        <a class="nav-link" href="{% url 'logout' %}"><i style="padding-right: 10px;" class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        <a class="nav-link" href="{% url 'login' %}"><i style="padding-right: 5px;" class="fa fa-sign-in" aria-hidden="true"></i>Log In</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Register</a>
                     </li>
                 {% endif %}        
                 <li class="nav-search">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
                     <form method="GET" action="{% url 'search' %}">
                         {% csrf_token %}
                         <input class="search" type="text" name="q" minlength="0" maxlength="100" required placeholder="Search" value="{{query}}">
@@ -120,7 +120,7 @@
             <div class="social-icons">
                 <a href="https://www.facebook.com/MITCSAIL/videos/rick-roll/175310064147000/"><i id="facebook" class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.instagram.com/p/BgSlRglAKBn/?hl=en"><i id="instagram" class="fa-brands fa-instagram"></i></a>
-                <a href="https://x.com/MIT_CSAIL/status/1363172815315214336"><i id="twitter" class="fa-brands fa-twitter"></i></a>
+                <a href="https://x.com/MIT_CSAIL/status/1363172815315214336"><i id="twitter" class="fa-brands fa-x-twitter"></i></a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i id="youtube" class="fa-brands fa-youtube"></i></a>
             </div>
         </footer>
