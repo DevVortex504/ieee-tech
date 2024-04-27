@@ -198,7 +198,7 @@ def favourite(request):
         favourites = Favourite.objects.filter(user = request.user).all()
     except:
         favourites = None
-        favourite = None
+    favourite = None
     if favourites:
         for favourite in favourites:
             id = int(favourite.meal_id)
