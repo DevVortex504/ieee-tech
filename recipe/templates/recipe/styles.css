@@ -601,10 +601,17 @@ nav svg{
     max-height: 60%;
     border-radius: 0.6em;
 }
-@media(max-width:600px){
+@media(max-width:500px){
     .login-container, .register-container{
-        max-width: 90%;
+        max-width: 100%;
         max-height: 100%;
+        padding: 10px;
+    }
+    .login-container{
+        margin-top: 40%;
+    }
+    .register-container{
+        margin-top: 30%;
     }
 }
 .register-container{
