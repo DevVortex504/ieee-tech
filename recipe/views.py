@@ -144,7 +144,8 @@ def recipe(request, id=None):
     meal = o["meals"][0]
     ingredients = []
     for i in range(1,21):
-        if meal[f"strIngredient{i}"] != "" or meal[f"strIngredient{i}"] != "null":
+        if meal[f"strIngredient{i}"] != "" and meal[f"strIngredient{i}"] != "null" and meal[f"strIngredient{i}"] != "None" and meal[f"strIngredient{i}"] != None:
+            print(f"appending: {meal[f'strIngredient{i}']}")
             name = meal[f"strIngredient{i}"]
             quantity = meal[f"strMeasure{i}"]
             ingredient = [name,quantity]
