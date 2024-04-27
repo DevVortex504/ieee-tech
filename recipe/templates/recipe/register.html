@@ -6,23 +6,108 @@
         <div class="register-container">
             <h2>Register</h2>
 
-            <form action="{% url 'register' %}" method="post">
+            <form id="register-form" action="{% url 'register' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <input class="form-control" autofocus type="text" name="username" required placeholder="Username" value="{{username}}">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="email" name="email" required placeholder="Email Address" value="{{email}}">
+                    <input class="form-control" id="email" type="email" name="email" required placeholder="Email Address" value="{{email}}">
+                    <span id="email-error" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="password" name="password" required placeholder="Password" value="{{password}}">
+                    <input class="form-control" id="password" type="password" name="password" required placeholder="Password" value="{{password}}">
+                    <span id="password-error" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="password" name="confirmation" required placeholder="Confirm Password" value="{{confirmation}}">
+                    <input class="form-control" id="confirmation" type="password" name="confirmation" required placeholder="Confirm Password" value="{{confirmation}}">
+                    <span id="confirmation-error" class="text-danger"></span>
                 </div>
                 <input class="btn btn-primary" type="submit" value="Register">
             </form>
+
+            <script>
+                const emailInput = document.getElementById("email");
+                const emailError = document.getElementById("email-error");
+                const passwordInput = document.getElementById("password")
+                const passwordError = document.getElementById("password-error")
+                const confirmationInput = document.getElementById('confirmation');
+                const confirmationError = document.getElementById('confirmation-error');
+
+                function validateEmail(email) {
+                    const re = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+                    return re.test(email);
+                }
+                function validatePassword(password) {
+                    const minLength = 6;
+                    const hasUpperCase = /[A-Z]/.test(password);
+                    const hasLowerCase = /[a-z]/.test(password);
+                    const hasNumber = /\d/.test(password);
+                    const hasSpecialChar = /[^a-zA-Z0-9\s]/.test(password);
+
+                    let errorMessages = [];
+                    if (password.length < minLength) {
+                        errorMessages.push('Minimum password length is ' + minLength + ' characters.');
+                    }
+                    if (!hasUpperCase) {
+                        errorMessages.push('Password must contain at least one uppercase letter.');
+                    }
+                    if (!hasLowerCase) {
+                        errorMessages.push('Password must contain at least one lowercase letter.');
+                    }
+                    if (!hasNumber) {
+                        errorMessages.push('Password must contain at least one number.');
+                    }
+                    if (!hasSpecialChar) {
+                        errorMessages.push('Password must contain at least one special character.');
+                    }
+
+                    return [errorMessages.length === 0, errorMessages];
+                }
     
+                emailInput.addEventListener('blur', () => { 
+                    const emailValue = emailInput.value;
+                    if (validateEmail(emailValue)) {
+                        emailError.textContent = ""; 
+                    } else {
+                        emailError.textContent = "Invalid email";
+                    }
+                    });
+
+                passwordInput.addEventListener('blur', () => {
+                    const passwordValue = passwordInput.value;
+                    const [boolean, errorMessages] = validatePassword(passwordValue)
+                    console.log(boolean, errorMessages)
+                    if (boolean) {
+                        passwordError.textContent = '';
+                    } else {
+                        passwordError.textContent = errorMessages.join('\n');;
+                    }
+                });
+
+                confirmationInput.addEventListener('blur', () => {
+                    const passwordValue = passwordInput.value;
+                    const confirmationValue = confirmationInput.value;
+                    if (passwordValue === confirmationValue) {
+                        confirmationError.textContent = '';
+                    } else {
+                        confirmationError.textContent = 'Passwords do not match.';
+                    }
+                });
+
+                // Prevent form submission if validation fails
+                const form = document.getElementById('register-form');
+                form.addEventListener('submit', (event) => {
+                    const emailValid = validateEmail(emailInput.value);
+                    const passwordValid = validatePassword(passwordInput.value);
+                    const confirmationValid = passwordInput.value === confirmationInput.value;
+
+                    if (!emailValid || !passwordValid || !confirmationValid) {
+                        event.preventDefault();  // Prevent form submission
+                    }
+                });
+            </script>
+
             Already have an account? <a href="{% url 'login' %}">Log In here.</a>
         </div>
     </section>
